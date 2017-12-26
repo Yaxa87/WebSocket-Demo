@@ -1,7 +1,3 @@
-
-
-// STEP 8
-
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -26,8 +22,6 @@ io.on('connection', function(socket){
         io.in(socket.chatRoom).emit('chat message', userName, msg);
     });
 
-
-    // server side event for typing and typing end
     socket.on('typing', function(userName){
         console.log(userName + ' is typing');
         socket.to(socket.chatRoom).broadcast.emit('typing', userName);
@@ -37,7 +31,6 @@ io.on('connection', function(socket){
         console.log('not typing');
         socket.to(socket.chatRoom).broadcast.emit('typing end');
     });
-
 
 });
 

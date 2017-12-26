@@ -29,7 +29,6 @@
 
 <script>
     $(function () {
-
         var userName = prompt('Please enter your name');
         var chatRoom = prompt('Please enter chatroom name');
 
@@ -39,9 +38,6 @@
             socket.emit('room', chatRoom);
         });
 
-
-
-        // capturing typing event
         $('#m').on('keyup', function(){
             if ($('#m').val() === "") {
                 socket.emit('typing end');
@@ -57,8 +53,6 @@
         socket.on('typing end', function(){
             $('#feedback').val("");
         });
-
-
 
         $('form').submit(function(){
             socket.emit('chat message', userName, $('#m').val());
